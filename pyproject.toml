@@ -1,0 +1,12 @@
+[project]
+
+name = "organizador-de-arquivos-v2"
+version = "1.0.0"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{name = "Guilherme Rezende Gaspar", email = "guirezgaspar@gmail.com"} ]
+
+[project.scripts]
+organizar = "arquivos.main:organ"
+
+

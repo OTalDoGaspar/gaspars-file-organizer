@@ -1,4 +1,9 @@
+import sys
+sys.dont_write_bytecode = True
+
+
 class Arquivo:
+
     nome = ""
     extensao = ""
 
