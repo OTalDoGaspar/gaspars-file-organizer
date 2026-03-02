@@ -1,6 +1,7 @@
 class Organizar:
 
     from Arquivo import Arquivo
+    import shutil
     import os
 
     extensoes_imagem = ["jpg", "jpeg", "png", "gif", "webp", "bmp", "svg", "raw"]
@@ -19,23 +20,53 @@ class Organizar:
         conteudo = os.listdir()
 
         for i in conteudo:
+            pasta = ""
             arquivo = Arquivo(i)
             os.chdir(destino)
-            if(os.path.isdir(f"{downloads}\'{arquivo.getNome()}'") == False):
-                os.chdir(downloads)
-                if arquivo.getExtensao() in extensoes_imagem:
-                    os.system(f"move {downloads}/'{arquivo.getNome()}' {destino}/Imagens/")
-                elif arquivo.getExtensao() in extensoes_texto:
-                    os.system(f"move {downloads}/'{arquivo.getNome()}' {destino}/Textos/")
-                elif arquivo.getExtensao() in extensoes_comprimidos:
-                    os.system(f"move {downloads}/'{arquivo.getNome()}' {destino}/Comprimidos/")
-                elif arquivo.getExtensao() in extensoes_video:
-                    os.system(f"move {downloads}/'{arquivo.getNome()}' {destino}/Videos/")
-                elif arquivo.getExtensao() in extensoes_audio:
-                    os.system(f"move {downloads}/'{arquivo.getNome()}' {destino}/Audios/")
+            if(os.path.isdir(rf"{downloads}\{arquivo.getNome()}") == False):
+                pastas = os.listdir()
+                if (arquivo.getExtensao() in extensoes_imagem):
+                    
+                    os.makedirs("Imagens", exist_ok=True)
+
+                    pasta = "Imagens"
+
+                elif (arquivo.getExtensao() in extensoes_texto):
+
+                    os.makedirs("Textos", exist_ok=True)                 
+
+                    pasta = "Textos"
+
+                elif (arquivo.getExtensao() in extensoes_comprimidos):
+
+                    os.makedirs("Comprimidos", exist_ok=True)  
+
+                    pasta = "Comprimidos"
+
+                elif (arquivo.getExtensao() in extensoes_video):
+
+                    os.makedirs("Videos", exist_ok=True)
+
+                    pasta =  "Videos"
+
+                elif (arquivo.getExtensao() in extensoes_audio):
+
+                    os.makedirs("Audios", exist_ok=True)
+
+                    pasta = "Audios"
                 else:
-                    os.system(f"move {downloads}/'{arquivo.getNome()}' {destino}/{arquivo.getExtensao}/")
-            print(arquivo.getNome())
+                    os.makedirs(arquivo.getExtensao(), exist_ok=True)
+
+                    pasta = rf"{arquivo.getExtensao()}"
+                
+                caminho = os.path.join(destino, pasta, arquivo.getNome())
+                print(caminho)
+                if(arquivo.getNome not in os.listdir()):
+                    shutil.move(rf"{downloads}\{arquivo.getNome()}", caminho )
+                    print(f"{arquivo.getNome()} movido com sucesso!")
+                else:
+                    print(f"O arquivo: {arquivo.getNome()} já existe na pasta correspondente!")
+
     else:
         print("\033[1;31m Variáveis de ambiente não configuradas corretamente! Certifique-se que as variáveis 'destino' e 'downloads' existem! \033[0m")
     
