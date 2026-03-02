@@ -5,8 +5,14 @@ version = "1.0.0"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [{name = "Guilherme Rezende Gaspar", email = "guirezgaspar@gmail.com"} ]
+description = "Um software para organizar seus arquivos de Download em pastas de acordo com o tipo de arquivo"
+license = "MIT"
 
 [project.scripts]
 organizar = "arquivos.main:organ"
+
+[project.urls]
+homepage = "https://github.com/OTalDoGaspar/Organizador-de-arquivos-V2"
+issues = "https://github.com/OTalDoGaspar/Organizador-de-arquivos-V2/issues"
 
 
