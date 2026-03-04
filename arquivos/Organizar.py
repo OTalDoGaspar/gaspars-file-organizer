@@ -36,7 +36,7 @@ class Organizar:
                 if(os.path.isdir(Path(self.downloads)/arquivo.getNome()) == False):
                     pastas = os.listdir()
                     if (arquivo.getExtensao() in self.extensoes_imagem):  
-                        # os.makedirs("Imagens", exist_ok=True)
+                        os.makedirs("Imagens", exist_ok=True)
                         pasta = "Imagens"
 
                     elif (arquivo.getExtensao() in self.extensoes_texto):
@@ -47,16 +47,23 @@ class Organizar:
 
                     elif (arquivo.getExtensao() in self.extensoes_comprimidos):
 
+                        os.makedirs("Comprimidos", exist_ok=True)
+
                         pasta = "Comprimidos"
 
                     elif (arquivo.getExtensao() in self.extensoes_video):
+
+                        os.makedirs("Videos", exist_ok=True)
 
                         pasta =  "Videos"
 
                     elif (arquivo.getExtensao() in self.extensoes_audio):
 
+                        os.makedirs("Audios", exist_ok=True)
+
                         pasta = "Audios"
                     else:
+                        os.makedirs(arquivo.getExtensao(), exist_ok=True)
 
                         pasta = rf"{arquivo.getExtensao()}"
                     
