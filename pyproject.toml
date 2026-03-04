@@ -1,7 +1,7 @@
 [project]
 
 name = "gaspars-file-organizer"
-version = "1.0.0"
+version = "1.1.0"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [{name = "Guilherme Rezende Gaspar", email = "guirezgaspar@gmail.com"} ]
