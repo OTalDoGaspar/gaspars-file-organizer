@@ -11,6 +11,7 @@ para obter e utilizar os arquivos, são necessárias algumas dependências do pr
 - PYTHON instalado localmente na máquina.
 - PIP(Windows) - já vem instalado com o python
 - PIPX(Linux/Mac)
+
 UBUNTU e distros baseadas no instalador APT:
 ```
   sudo apt install pipx
