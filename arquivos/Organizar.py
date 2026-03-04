@@ -3,7 +3,7 @@ sys.dont_write_bytecode = True
 
 from Arquivo import Arquivo
 import shutil
-
+from pathlib import Path
 import os
 
 
@@ -15,9 +15,12 @@ class Organizar:
     extensoes_video = ["mp4", "mkv", "avi", "mov", "wmv", "flv", "webm", "m4v", "mpg", "mpeg"]
     extensoes_audio = ["mp3", "wav", "flac", "aac", "ogg", "wma", "m4a", "aiff", "opus", "alac"]
 
-    username = os.getlogin
-    destino = os.getenv("Destino")
-    downloads = os.getenv("Downloads")
+    def __init__(self):
+        env_destino = os.getenv("Destino")
+        env_downloads = os.getenv("Downloads")
+
+        self.destino = Path(env_destino) if env_destino else None
+        self.downloads = Path(env_downloads) if env_downloads else None
 
     def Organizar_downloads(self):
         if (self.destino != None) and (self.downloads != None):
@@ -29,7 +32,7 @@ class Organizar:
                 pasta = ""
                 arquivo = Arquivo(i)
                 os.chdir(self.destino)
-                if(os.path.isdir(os.path.join(self.downloads, arquivo.getNome)) == False):
+                if(os.path.isdir(Path(self.downloads)/arquivo.getNome()) == False):
                     pastas = os.listdir()
                     if (arquivo.getExtensao() in self.extensoes_imagem):
                         
@@ -65,16 +68,16 @@ class Organizar:
 
                         pasta = rf"{arquivo.getExtensao()}"
                     
-                    caminho = os.path.join(self.destino, pasta, arquivo.getNome())
+                    caminho = Path(self.destino)/pasta/arquivo.getNome()
                     print(caminho)
                     if(arquivo.getNome not in os.listdir()):
                         if(os.name == "nt"):
-                            shutil.move(rf"{self.downloads}\{arquivo.getNome()}", caminho )
+                            shutil.move(Path(self.downloads)/arquivo.getNome, caminho )
                         else:
-                            shutil.move(rf"{self.downloads}/{arquivo.getNome()}", caminho)
+                            shutil.move(Path(self.downloads)/arquivo.getNome, caminho)
                         print(f"{arquivo.getNome()} movido com sucesso!")
                     else:
                         print(f"O arquivo: {arquivo.getNome()} já existe na pasta correspondente!")
 
         else:
-            print("\033[1;31m Variáveis de ambiente não configuradas corretamente! Certifique-se que as variáveis 'destino' e 'downloads' existem! \033[0m")
+            print("\033[1;31m Variáveis de ambiente não configuradas corretamente! Certifique-se que as variáveis 'Destino' e 'Downloads' existem! \033[0m")
