@@ -63,7 +63,7 @@ class Organizar:
                     caminho = Path(self.destino)/pasta/arquivo.getNome()
                     print(caminho)
                     if(arquivo.getNome not in os.listdir()):
-                        shutil.move(str(Path(Origin_path),str(caminho)))
+                        shutil.move(str(Path(Origin_path)),str(caminho))
                         print(f"{arquivo.getNome()} movido com sucesso!")
                     else:
                         print(f"O arquivo: {arquivo.getNome()} já existe na pasta correspondente!")
