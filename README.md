@@ -61,7 +61,7 @@ no Windows:
 
 ### 👨‍💻 Utilizando.
 
-para utilizar o software, basta ir no terminal(após ter feito os passos anteriorer) e digite:
+para utilizar o software, basta ir no terminal(após ter feito os passos anteriores) e digite:
 ```
 organizar
 ```
